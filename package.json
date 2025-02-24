@@ -1,27 +1,48 @@
 {
-  "name": "client-repository",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.7"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.7",
-    "@eslint/eslintrc": "^3"
-  }
+    "name": "client-repository",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+        "format:staged": "prettier --write \"$(git diff --cached --name-only --diff-filter=ACMR | grep -E \"\\.(js|jsx|ts|tsx|json|md)$\" | xargs)\"",
+        "prepare": "husky"
+    },
+    "dependencies": {
+        "next": "15.1.7",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@typescript-eslint/eslint-plugin": "^8.24.1",
+        "@typescript-eslint/parser": "^8.24.1",
+        "eslint": "^9",
+        "eslint-config-next": "15.1.7",
+        "eslint-config-prettier": "^10.0.1",
+        "eslint-import-resolver-typescript": "^3.8.3",
+        "eslint-plugin-import": "^2.31.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "postcss": "^8",
+        "prettier": "3.5.2",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write --ignore-unknown"
+        ],
+        "*.{json,md}": [
+            "prettier --write --ignore-unknown"
+        ]
+    }
 }
