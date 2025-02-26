@@ -11,7 +11,7 @@ jobs:
         name: ESLint
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
@@ -26,7 +26,7 @@ jobs:
         name: TypeScript
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
@@ -43,7 +43,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  fetch-depth: 0
+                  fetch-depth: 1
+
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
@@ -62,7 +63,7 @@ jobs:
         needs: [lint, type-check, sonarcloud]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
