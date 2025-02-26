@@ -43,23 +43,14 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  fetch-depth: 1
-
+                  fetch-depth: 0
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: '18'
                   cache: 'npm'
-
             - name: Install dependencies
               run: npm ci
-
-            - name: Download SonarScanner
-              run: |
-                  curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.1.2450-linux.zip
-                  unzip sonar-scanner.zip
-                  export PATH=$PATH:$(pwd)/sonar-scanner-4.6.1.2450-linux/bin
-
             - name: SonarCloud Scan
               uses: SonarSource/sonarcloud-github-action@master
               env:
